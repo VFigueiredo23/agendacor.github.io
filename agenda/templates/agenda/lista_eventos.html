@@ -1,0 +1,49 @@
+{% extends 'agenda/base.html' %}
+
+{% block title %}Reuniões da Agenda{% endblock %}
+
+{% block content %}
+
+
+<div class="flex items-start justify-center min-h-screen bg-gray-100 p-0 ">
+  <div class="w-full max-w-4xl bg-white rounded shadow p-6 overflow-y-auto h-[600px]">
+    <div class="flex flex-col items-center gap-1">
+      <div id="relogio" class="text-4xl font-mono"></div>
+    </div> 
+
+    {% for evento in eventos %}
+    <div class="border border-gray-300 bg-gray-50 p-5 rounded mb-4 space-y-2 flex flex-col">
+        <div class="flex justify-between items-center ">
+            <h2 class="text-lg font-semibold">{{ evento.titulo }}</h2>
+            {% if evento.status == 'Finalizada' %}
+                <span class="text-lg text-red-600 bg-red-100 px-2 py-1 rounded">🔴 Finalizada</span>
+            {% elif evento.status == 'Em andamento' %}
+                <span class="text-lg text-green-600 bg-green-100 px-2 py-1 rounded">🟢 Em andamento</span>
+            {% elif evento.status == 'Em breve' %}
+                <span class="text-lg text-yellow-700 bg-yellow-100 px-2 py-1 rounded">🟡 Em breve</span>
+            {% endif %}
+        </div>
+        <p class="text-sm text-gray-600"><strong>Início:</strong> {{ evento.inicio }} <strong> - </strong> <strong>Fim:</strong> {{ evento.fim }}</p>
+        <p class="text-sm text-gray-600"><strong>Local:</strong> {{ evento.local }}</p>
+    </div>
+    {% empty %}
+        <p class="text-center text-gray-500">Nenhuma reunião encontrada para hoje.</p>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  function atualizarRelogio() {
+    const agora = new Date();
+    const horas = agora.getHours().toString().padStart(2, '0');
+    const minutos = agora.getMinutes().toString().padStart(2, '0');
+    const segundos = agora.getSeconds().toString().padStart(2, '0');
+    document.getElementById('relogio').textContent =
+    agora.toLocaleDateString('pt-BR') + ' ' +
+    `${horas}:${minutos}:${segundos}`;
+  }
+
+  setInterval(atualizarRelogio, 1000);  // atualiza a cada 1s
+  atualizarRelogio(); // exibe imediatamente ao carregar
+</script>
+{% endblock %}

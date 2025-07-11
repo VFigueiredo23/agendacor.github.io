@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>{% block title %}Agenda{% endblock %}</title>
+    <link href="{% static 'css/dist/styles.css' %}" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-900 min-h-screen">
+    <!-- Barra de navegação -->
+    <nav class="bg-[#13335a] p-4 shadow-md flex justify-between items-end">
+    <div class="container mx-auto flex justify-between items-center">
+        <iframe 
+            src="https://brjhon.github.io/ColdGend.github.io/visualizar.html?tipo=estagio" 
+            width="250px" 
+            height="150px" 
+            style="border: none; border-radius: 10px;" 
+            allowfullscreen
+            loading="lazy">
+        </iframe>
+        <img src="{% static 'img/Logo-Prefeitura.png' %}" alt="Logo prefeitura" width="250px" height="150px">
+        <div>
+        
+        <iframe 
+            src="https://brjhon.github.io/ColdGend.github.io/visualizar.html?tipo=calor" 
+            width="250px" 
+            height="150px" 
+            style="border: none; border-radius: 10px;" 
+            allowfullscreen
+            loading="lazy">
+        </iframe>
+        </div>
+    </div>
+    </nav>
+    <div class="container mx-auto px-4 py-8">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
