@@ -134,5 +134,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 GOOGLE_API_KEY = 'AIzaSyCdspxqHtO2x7vK_Satf9NWbGry1OyvCFA'
 GOOGLE_CALENDAR_ID = 'contato@cor.rio'
 
-NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+#NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+NPM_BIN_PATH = "/usr/bin/npm"
 
